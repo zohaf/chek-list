@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { FaTasks } from "react-icons/fa";
+import React, { useState } from "react";
 import AddPanel from "./AddPanel";
 import Items from "./Items";
 
 const ItemsPanel = () => {
-  const [showAddItem, setShowAddItem] = useState(false);
   const [items, setItems] = useState([
     { id: 1, text: "git", reminder: false },
     { id: 2, text: "react proj setup", reminder: false },

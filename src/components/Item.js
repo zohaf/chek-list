@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
-import RemoveItem from "./RemoveItem";
 
 const Item = ({ item, onDelete, onUpdate }) => {
   return (
