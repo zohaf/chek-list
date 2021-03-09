@@ -1,12 +1,12 @@
 import React from "react";
 
-import FolderPanel from "./FolderPanel";
+import ItemsPanel from "./ItemsPanel";
 import EditPanel from "./EditPanel";
 
 const Panels = () => {
   return (
     <div className="panel-container">
-      <FolderPanel />
+      <ItemsPanel />
       <EditPanel />
     </div>
   );

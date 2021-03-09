@@ -5,7 +5,7 @@
   --primary-rgb: 76, 76, 76;
   --secondary: #dfdc25;
   --secondary-rgb: 255, 247, 241;
-  --tertiary: #21db31;
+  --tertiary: #000000;
   --tertiary-rgb: 219, 39, 33;
 
   --font-large: 26px;
@@ -97,6 +97,7 @@ a {
 /* ------- Buttons ------- */
 
 .btn {
+  width: min-content;
   padding: 6px 18px;
   margin: 0;
   border-radius: 30px;
@@ -134,8 +135,8 @@ button:hover {
 
 .btn-secondary {
   background-color: var(--secondary);
-  color: var(--primary);
-  border: var(--line-thick) solid var(--secondary);
+  color: var(--secondary);
+  border: var(--line-thin) solid var(--secondary);
   transition: 0.25s;
 }
 
@@ -286,14 +287,14 @@ li > a:hover {
 }
 
 .side-panel-top-container {
-  height: 35%;
+  height: 15%;
   border-radius: 20px 0px 0px 0px;
   border-bottom: var(--line-medium) solid var(--primary);
   text-align: center;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .side-panel-bottom-container {
@@ -342,8 +343,8 @@ li > a:hover {
 
 .edit-profile {
   bottom: 0;
-  width: 50%;
-  align-self: center;
+  width: 20%;
+  align-self: flex-end;
 }
 
 /* ------- Forms and Fields ------- */
@@ -475,54 +476,58 @@ textarea {
   margin: 10px 2px 10px 0px;
 }
 
-.clip-icon {
+.item-icon {
   align-self: center;
+  font-size: var(--font-medium);
+
   margin: 0 13px;
 }
 
 /* ------- Clips ------- */
 
-.clip {
+.item {
   width: 100%;
   display: flex;
   flex-direction: row;
+  padding: 0 13 0 0px;
+  justify-content: space-between;
 }
 
-.clip-list-container {
+.item-list-container {
   display: flex;
   flex-direction: column;
 }
 
-.clip-container {
+.item-container {
   display: flex;
   flex-direction: row;
 }
 
-.clip-message-container {
+.item-message-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.clip-message {
+.item-message {
   width: 100%;
-  font-size: var(--font-small);
+  font-size: var(--font-medium-large);
   background-color: var(--secondary);
   color: var(--primary);
   transition: 0.25s;
   padding: 12px 15px;
-  border: var(--line-thick) solid var(--primary);
+  border: var(--line-thin) solid var(--secondary);
   border-radius: 20px;
   margin: 10px 2px 10px 0px;
 }
 
-.clip-info {
+.item-info {
   font-size: var(--font-small);
   color: rgba(var(--primary-rgb), 0.5);
   margin: -5px 0 10px 20px;
 }
 
-.clip-info-recipient {
+.item-info-recipient {
   font-size: var(--font-small);
   color: rgba(var(--secondary-rgb), 0.5);
   margin: -5px 0 10px 20px;
@@ -532,9 +537,9 @@ textarea {
   margin: 0;
 }
 
-.clip-button-controls {
-  margin: 0 0 0 -4px;
-  padding: 2px 0px 30px 0px;
+.item-button-controls {
+  margin: 0 0 0 -2px;
+  padding: 2px 0px 0px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
