@@ -7,18 +7,18 @@ const Item = ({ item, onDelete, onUpdate }) => {
     <div className="item-list-container">
       <div className="item-container">
         <div className="item-message-container">
-          <p className="item-message">{item.text}</p>
+          <p className="item-message">{item.item}</p>
         </div>
         <div className="item-button-controls">
           <FaRegEdit
             className="item-icon"
             style={{ color: "white", cursor: "pointer" }}
-            onClick={() => onUpdate(item.id)}
+            // onClick={() => onUpdate(item.id)}
           />
           <FaTimes
             className="item-icon"
             style={{ color: "white", cursor: "pointer" }}
-            onClick={() => onDelete(item.id)}
+            // onClick={() => onDelete(item.id)}
           />
         </div>
       </div>

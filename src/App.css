@@ -244,10 +244,6 @@ li > a:hover {
   padding: 0px;
   background-color: var(--secondary);
   border: var(--line-thick) solid var(--primary);
-
-  -webkit-box-shadow: 12px 18px 30px 0px rgba(var(--primary-rgb), 0.3); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 12px 18px 30px 0px rgba(var(--primary-rgb), 0.3); /* Firefox 3.5 - 3.6 */
-  box-shadow: 12px 18px 30px 0px rgba(var(--primary-rgb), 0.3); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
 .main-panel-container {

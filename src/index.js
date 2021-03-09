@@ -1,14 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { GraphQLClient, ClientContext } from "graphql-hooks";
 
+const client = new GraphQLClient({
+  url: "https://graphql.datocms.com/",
+  headers: {
+    Authorization: "Bearer ebd36e5231dd939d83faf233743fbd",
+  },
+});
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ClientContext.Provider value={client}>
+      <App />
+    </ClientContext.Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

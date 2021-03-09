@@ -3,10 +3,10 @@ import React from "react";
 import ItemsPanel from "./ItemsPanel";
 import EditPanel from "./EditPanel";
 
-const Panels = () => {
+const Panels = ({ items }) => {
   return (
     <div className="panel-container">
-      <ItemsPanel />
+      <ItemsPanel checklists={items} />
       <EditPanel />
     </div>
   );

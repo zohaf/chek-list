@@ -1,16 +1,13 @@
 import React from "react";
 import Item from "./Item";
 
-const Items = ({ items, onDelete, onUpdate }) => {
+const Items = ({ checklists, onDelete, onUpdate }) => {
+  const itemsTest = checklists.allChecklists;
+  console.log(itemsTest);
   return (
     <div className="side-panel-bottom-container">
-      {items.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          onDelete={onDelete}
-          onUpdate={onUpdate}
-        />
+      {itemsTest.map((item, index) => (
+        <Item key={index} item={item} onDelete={onDelete} onUpdate={onUpdate} />
       ))}
     </div>
   );

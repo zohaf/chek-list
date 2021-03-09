@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddPanel from "./AddPanel";
 import Items from "./Items";
 
-const ItemsPanel = () => {
+const ItemsPanel = ({ checklists }) => {
   const [items, setItems] = useState([
     { id: 1, text: "git", reminder: false },
     { id: 2, text: "react proj setup", reminder: false },
@@ -13,7 +13,7 @@ const ItemsPanel = () => {
   const addItem = (item) => {
     const id = Math.floor(Math.random() * 1000) + 1;
     const newItem = { id, text: item.input, reminder: false };
-    setItems([...items, newItem]);
+    // setItems([...items, newItem]);
     // console.log("new", id);
   };
 
@@ -37,7 +37,11 @@ const ItemsPanel = () => {
 
       <div className="side-panel-bottom-container">
         {items.length > 0 ? (
-          <Items items={items} onDelete={deleteItem} onUpdate={updateItem} />
+          <Items
+            checklists={checklists}
+            onDelete={deleteItem}
+            onUpdate={updateItem}
+          />
         ) : (
           ""
         )}
