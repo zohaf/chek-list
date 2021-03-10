@@ -1,53 +1,67 @@
 import React, { useState } from "react";
-import AddPanel from "./AddPanel";
-import Items from "./Items";
+import { useMutation } from "graphql-hooks";
+import Item from "./Item";
 
-const ItemsPanel = ({ checklists }) => {
-  const [items, setItems] = useState([
-    { id: 1, text: "git", reminder: false },
-    { id: 2, text: "react proj setup", reminder: false },
-    { id: 3, text: "export ", reminder: false },
-  ]);
+const { SiteClient } = require("datocms-client");
+const client = new SiteClient("ebd36e5231dd939d83faf233743fbd");
 
-  //add items
-  const addItem = (item) => {
-    const id = Math.floor(Math.random() * 1000) + 1;
-    const newItem = { id, text: item.input, reminder: false };
-    // setItems([...items, newItem]);
-    // console.log("new", id);
+export default function ItemsPanel({ checklists, refetch }) {
+  const itemArray = checklists.allChecklists;
+  const [input, setInput] = useState("");
+
+  const onAdd = async (e) => {
+    e.preventDefault();
+    const record = await client.items
+      .create({
+        itemType: "587921", //Model ID
+        item: input,
+      })
+      .then(() => {
+        refetch && refetch();
+        setInput("");
+      })
+      .catch((err) => console.log(err));
   };
 
-  //update
-  const updateItem = (id, newValue) => {
-    setItems(items.filter((item) => item.id !== id));
-  };
-
-  //delete items
-
-  const deleteItem = (id) => {
-    setItems(items.filter((item) => item.id !== id));
-    console.log("delete", id);
+  const deleteRecord = (id) => {
+    client.items
+      .destroy(id)
+      .then((item) => {
+        refetch && refetch();
+        setInput("");
+        console.log(item);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <div className="side-panel-container">
       <div className="side-panel-top-container">
-        <AddPanel onAdd={addItem} onClick={addItem} />
+        <form className="item" onSubmit={onAdd}>
+          <input
+            type="text"
+            placeholder="add a checklist"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="item-container"
+          />
+          <button type="submit" className="edit-profile  btn-tertiary">
+            New
+          </button>
+        </form>
       </div>
 
       <div className="side-panel-bottom-container">
-        {items.length > 0 ? (
-          <Items
-            checklists={checklists}
-            onDelete={deleteItem}
-            onUpdate={updateItem}
-          />
-        ) : (
-          ""
-        )}
+        {checklists.length !== 0
+          ? itemArray.map((note, index) => (
+              <div key={index} className="item-list-container">
+                <Item onDelete={deleteRecord} data={note} />
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );
-};
-
-export default ItemsPanel;
+}

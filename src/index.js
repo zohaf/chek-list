@@ -11,6 +11,7 @@ const client = new GraphQLClient({
     Authorization: "Bearer ebd36e5231dd939d83faf233743fbd",
   },
 });
+
 ReactDOM.render(
   <React.StrictMode>
     <ClientContext.Provider value={client}>

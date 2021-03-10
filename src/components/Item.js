@@ -1,29 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { FaTimes } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 
-const Item = ({ item, onDelete, onUpdate }) => {
+const { SiteClient } = require("datocms-client");
+const client = new SiteClient("ebd36e5231dd939d83faf233743fbd");
+
+export default function Item({ data, onDelete }) {
+  const [input, setInput] = useState("");
   return (
-    <div className="item-list-container">
-      <div className="item-container">
-        <div className="item-message-container">
-          <p className="item-message">{item.item}</p>
-        </div>
-        <div className="item-button-controls">
-          <FaRegEdit
-            className="item-icon"
-            style={{ color: "white", cursor: "pointer" }}
-            // onClick={() => onUpdate(item.id)}
-          />
-          <FaTimes
-            className="item-icon"
-            style={{ color: "white", cursor: "pointer" }}
-            // onClick={() => onDelete(item.id)}
-          />
-        </div>
+    <div className="item-container">
+      <div className="item-message-container">
+        <p className="item-message">{data.item}</p>
+      </div>
+      <div className="item-button-controls">
+        <FaRegEdit
+          className="item-icon"
+          style={{ color: "white", cursor: "pointer" }}
+          // onClick={() => onOpen(item.id)}
+        />
+        <FaTimes
+          className="item-icon"
+          style={{ color: "white", cursor: "pointer" }}
+          onClick={() => onDelete(data.id)}
+        />
       </div>
     </div>
   );
-};
-
-export default Item;
+}

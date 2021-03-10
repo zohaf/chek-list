@@ -1,11 +1,11 @@
 import React from "react";
 
-const EditPanel = () => {
+const ChildPanel = () => {
   return (
     <header className="main-panel-container">
-      <h1>main panel</h1>
+      <h1>child panel</h1>
     </header>
   );
 };
 
-export default EditPanel;
+export default ChildPanel;
