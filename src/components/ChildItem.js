@@ -2,11 +2,7 @@ import React, { useState } from "react";
 
 import { FaTimes } from "react-icons/fa";
 
-const { SiteClient } = require("datocms-client");
-const client = new SiteClient("ebd36e5231dd939d83faf233743fbd");
-
 export default function ChildItem({ data, onDelete }) {
-  const [input, setInput] = useState("");
   return (
     <div className="item-container">
       <div className="child-message-container">

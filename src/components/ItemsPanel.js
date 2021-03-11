@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import Item from "./Item";
 
-import ChildItem from "./ChildItem";
 import ChildPanel from "./ChildPanel";
 
 const { SiteClient } = require("datocms-client");
@@ -23,7 +22,7 @@ export default function ItemsPanel({ checklists, refetch }) {
   // add record
   const onAdd = async (e) => {
     e.preventDefault();
-    const record = await client.items
+    await client.items
       .create({
         itemType: "587921", //Model ID
         item: input,

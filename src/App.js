@@ -1,4 +1,4 @@
-import React, { Children, useEffect } from "react";
+import React from "react";
 import { useQuery } from "graphql-hooks";
 
 import Header from "./components/HeaderFooter/Header";

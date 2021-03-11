@@ -16,9 +16,10 @@ export default function ChildPanel({
   const [input, setInput] = useState("");
 
   // add child-record
+
   const onAddChild = async (e) => {
     e.preventDefault();
-    const record = await client.items
+    client.items
       .create({
         itemType: "587921", //Model ID
         item: input,
