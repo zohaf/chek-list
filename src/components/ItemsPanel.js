@@ -1,14 +1,25 @@
 import React, { useState } from "react";
-import { useMutation } from "graphql-hooks";
+import { FaArrowRight } from "react-icons/fa";
 import Item from "./Item";
+
+import ChildItem from "./ChildItem";
+import ChildPanel from "./ChildPanel";
 
 const { SiteClient } = require("datocms-client");
 const client = new SiteClient("ebd36e5231dd939d83faf233743fbd");
 
 export default function ItemsPanel({ checklists, refetch }) {
-  const itemArray = checklists.allChecklists;
-  const [input, setInput] = useState("");
+  const parentArray = checklists.allChecklists.filter(
+    (i) => i.children.length > 0 || i.parent === null
+  );
 
+  console.log(parentArray);
+
+  const [input, setInput] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
+  const [childData, setChildData] = useState([]);
+
+  // add record
   const onAdd = async (e) => {
     e.preventDefault();
     const record = await client.items
@@ -23,6 +34,7 @@ export default function ItemsPanel({ checklists, refetch }) {
       .catch((err) => console.log(err));
   };
 
+  //delete record
   const deleteRecord = (id) => {
     client.items
       .destroy(id)
@@ -36,32 +48,51 @@ export default function ItemsPanel({ checklists, refetch }) {
       });
   };
 
+  //show children record
+  const showChildData = (parentItem) => {
+    setChildData(parentItem.children);
+    setIsSelected(!isSelected);
+  };
+
   return (
-    <div className="side-panel-container">
-      <div className="side-panel-top-container">
-        <form className="item" onSubmit={onAdd}>
-          <input
-            type="text"
-            placeholder="add a checklist"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="item-container"
-          />
-          <button type="submit" className="edit-profile  btn-tertiary">
-            New
-          </button>
-        </form>
+    <div className="panel-container">
+      <div className="side-panel-container">
+        <div className="side-panel-top-container">
+          <form className="item" onSubmit={onAdd}>
+            <input
+              type="text"
+              placeholder="add a checklist"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="input"
+            />
+            <button type="submit" className="btn btn-secondary">
+              ADD
+            </button>
+          </form>
+        </div>
+
+        <div className="side-panel-bottom-container">
+          {checklists.length !== 0
+            ? parentArray.map((note, index) => (
+                <div key={index} className="item-container">
+                  <div className="item-message-container">
+                    <Item onDelete={deleteRecord} data={note} />
+                  </div>
+                  <div className="item-button-controls">
+                    <FaArrowRight
+                      className="item-icon"
+                      style={{ color: "white", cursor: "pointer" }}
+                      onClick={() => showChildData(note)}
+                    />
+                  </div>
+                </div>
+              ))
+            : null}
+        </div>
       </div>
 
-      <div className="side-panel-bottom-container">
-        {checklists.length !== 0
-          ? itemArray.map((note, index) => (
-              <div key={index} className="item-list-container">
-                <Item onDelete={deleteRecord} data={note} />
-              </div>
-            ))
-          : null}
-      </div>
+      <ChildPanel isSelected={isSelected} childData={childData} />
     </div>
   );
 }
