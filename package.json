@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "datocms-client": "^3.3.0"
+    "datocms-client": "^3.3.0",
+    "purgecss": "^4.0.2"
   }
 }

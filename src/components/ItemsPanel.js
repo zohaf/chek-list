@@ -18,6 +18,7 @@ export default function ItemsPanel({ checklists, refetch }) {
   const [input, setInput] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [childData, setChildData] = useState([]);
+  const [parentId, setParentId] = useState("");
 
   // add record
   const onAdd = async (e) => {
@@ -51,6 +52,7 @@ export default function ItemsPanel({ checklists, refetch }) {
   //show children record
   const showChildData = (parentItem) => {
     setChildData(parentItem.children);
+    setParentId(parentItem.id);
     setIsSelected(!isSelected);
   };
 
@@ -77,7 +79,11 @@ export default function ItemsPanel({ checklists, refetch }) {
             ? parentArray.map((note, index) => (
                 <div key={index} className="item-container">
                   <div className="item-message-container">
-                    <Item onDelete={deleteRecord} data={note} />
+                    <Item
+                      onDelete={deleteRecord}
+                      data={note}
+                      isSelected={isSelected}
+                    />
                   </div>
                   <div className="item-button-controls">
                     <FaArrowRight
@@ -92,7 +98,13 @@ export default function ItemsPanel({ checklists, refetch }) {
         </div>
       </div>
 
-      <ChildPanel isSelected={isSelected} childData={childData} />
+      <ChildPanel
+        isSelected={isSelected}
+        childData={childData}
+        parentId={parentId}
+        parentArray={parentArray}
+        onDelete={deleteRecord}
+      />
     </div>
   );
 }

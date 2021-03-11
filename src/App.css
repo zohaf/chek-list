@@ -10,7 +10,7 @@
 
   --font-large: 26px;
   --font-medium-large: 20px;
-  --font-medium: 14px;
+  --font-medium: 18px;
   --font-normal: 12px;
   --font-small: 10px;
 
@@ -30,6 +30,7 @@ body,
   font-family: "Josefin Sans", sans-serif;
   font-size: var(--font-normal);
   cursor: url("./assets/cursor.svg"), default;
+  user-select: none;
 }
 
 .App {
@@ -101,8 +102,9 @@ a {
   font-family: "Josefin Sans", sans-serif;
   padding: 8px 8px;
   margin: 0;
-  border-radius: 10px;
-  font-size: var(--font-medium);
+  border-radius: 30px;
+  font-size: var(--font-normal);
+  opacity: 0.3;
 }
 
 button:focus {
@@ -191,15 +193,6 @@ button:hover {
   fill: var(--tertiary);
 }
 
-ul {
-  padding-inline: initial;
-  display: inline-flex;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-  justify-content: center;
-}
-
 li {
   list-style-type: none;
   font-size: 16px;
@@ -224,21 +217,6 @@ li > a:hover {
   flex-direction: column;
 }
 
-.landing-svg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.nav-container {
-  height: 50px;
-  margin-bottom: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .panel-container {
   margin: 0 auto;
   width: 1000px;
@@ -252,10 +230,36 @@ li > a:hover {
 
 .main-panel-container {
   padding: 8px;
+  padding-top: 8px;
   border-left: var(--line-thick) solid var(--primary);
   width: 65%;
   overflow: hidden;
   position: relative;
+}
+
+.main-panel-top-container {
+  height: 10%;
+  padding: 10px;
+  border-radius: 20px 0px 0px 0px;
+  border-bottom: var(--line-thick) solid var(--primary);
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.main-panel-bottom-container {
+  height: 90%;
+  overflow: auto;
+  padding-top: 100px;
+
+  padding-inline: initial;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
 }
 
 .chat-messages-container {
@@ -268,17 +272,6 @@ li > a:hover {
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
-}
-
-.chat-absolute-container {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  padding: 6px;
-  width: 100%;
-  height: 170px;
-  border-radius: 0px 0px 30px 0px;
-  background-color: var(--secondary);
 }
 
 .side-panel-container {
@@ -406,18 +399,19 @@ select {
 }
 
 .input {
-  width: 60%;
+  width: 70%;
   font-family: "Roboto", sans-serif;
 
   font-weight: 400;
   background-color: var(--primary);
+  opacity: 0.8;
   color: var(--secondary);
   transition: 0.25s;
   padding: 8px 10px;
   border: var(--line-thick) solid var(--primary);
   border-radius: 20px;
   height: 10px;
-  margin-right: 18px;
+  margin-right: 8px;
 }
 .input::placeholder {
   width: 60%;
@@ -431,7 +425,7 @@ select {
 .input-child {
   width: 100%;
   font-family: "Roboto", sans-serif;
-
+  opacity: 0.8;
   font-weight: 400;
   background-color: var(--primary);
   color: var(--secondary);
@@ -440,7 +434,16 @@ select {
   border: var(--line-thick) solid var(--primary);
   border-radius: 20px;
   height: 10px;
-  margin-right: 18px;
+  margin-right: 8px;
+}
+.input-child::placeholder {
+  width: 60%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: medium;
+  color: var(--secondary);
+  padding-left: 2px;
+  opacity: 0.8;
 }
 .send-button {
   background-color: var(--primary);
@@ -534,7 +537,12 @@ textarea {
   flex-direction: column;
   width: 100%;
 }
+.child-message-container {
+  display: flex;
+  flex-direction: column;
 
+  width: 100%;
+}
 .item-message {
   width: 100%;
   font-size: var(--font-medium-large);
@@ -545,6 +553,26 @@ textarea {
   border: var(--line-thin) solid var(--secondary);
   border-radius: 20px;
   margin: 10px 2px 10px 0px;
+}
+
+.child-message {
+  width: 100%;
+  font-size: var(--font-medium);
+  background-color: var(--secondary);
+  color: var(--primary);
+  transition: 0.25s;
+  padding: 0px 15px;
+  border: var(--line-thin) solid var(--secondary);
+  border-radius: 20px;
+  margin: 10px 2px 10px 0px;
+}
+
+.item-message:hover {
+  text-decoration: underline;
+}
+
+.item-selected {
+  color: var(--tertiary);
 }
 
 .item-info {
