@@ -62,7 +62,7 @@ export default function ItemsPanel({ checklists, refetch }) {
           <form className="item" onSubmit={onAdd}>
             <input
               type="text"
-              placeholder="add a checklist"
+              placeholder="how to"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="input"

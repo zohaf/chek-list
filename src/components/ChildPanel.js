@@ -38,7 +38,7 @@ export default function ChildPanel({
         <form className="item" onSubmit={onAddChild}>
           <input
             type="text"
-            placeholder="add a checklist"
+            placeholder="add the steps"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="input-child"
