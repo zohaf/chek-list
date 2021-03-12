@@ -5,12 +5,11 @@ import Item from "./Item";
 import ChildPanel from "./ChildPanel";
 
 const { SiteClient } = require("datocms-client");
-const client = new SiteClient("ebd36e5231dd939d83faf233743fbd");
+const client = new SiteClient("0fc98fd1919123fd7f465a36f38b4f");
 
 export default function ItemsPanel({ checklists, refetch }) {
-  const parentArray = checklists.allChecklists.filter(
-    (i) => i.children.length > 0 || i.parent === null
-  );
+  const parentArray = checklists.allChecklists.filter((i) => i.parent === null);
+  console.log(parentArray.parent);
 
   console.log(parentArray);
 

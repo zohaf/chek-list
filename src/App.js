@@ -10,22 +10,26 @@ const HOMEPAGE_QUERY = `query MyQuery {
   allChecklists {
     id
     item
+     parent {
+        id
+        item
+      }
     children {
       id
       item
-      position
-    }
-    parent {
-      id
-      item
-      _isValid
+     
     }
   }
 }
+
 `;
 
 function App() {
   const { loading, error, data, refetch } = useQuery(HOMEPAGE_QUERY);
+
+  console.log(data);
+
+  if (error) console.log(error);
 
   if (loading) return "Loading...";
   if (error) return "Something Bad Happened";
