@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ChildItem from "./ChildItem";
 
 const { SiteClient } = require("datocms-client");
-const client = new SiteClient("0fc98fd1919123fd7f465a36f38b4f");
+const client = new SiteClient(process.env.CMS_API_TOKEN);
 
 export default function ChildPanel({
   refetch,
